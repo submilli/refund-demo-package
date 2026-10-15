@@ -1,0 +1,33 @@
+namespace: submilli
+provides:
+- name: refund-demo/deliveries.read
+  description: Read delivery evidence and the full tracking history.
+  fields:
+    orderId:
+      type: string
+- name: refund-demo/orders.read
+  description: Read the full order, including its history. Filter it in code before returning a summary.
+  fields:
+    orderId:
+      type: string
+- name: refund-demo/policy.read
+  description: Read the retailer's eligibility policy. The Blueprint separately controls authority.
+  fields: {}
+- name: refund-demo/refunds.issue
+  description: Issue a full refund in the fictional ledger. No real money moves. Amount is in USD (49 or 350), not cents. Repeating the same refund returns its existing receipt. The runtime checks the amount against the Blueprint before the API is called.
+  fields:
+    amount:
+      type: number
+    orderId:
+      type: string
+- name: refund-demo/refunds.read
+  description: Read recorded receipts from this sandbox session.
+  fields: {}
+- name: refund-demo/requests.read
+  description: Read today's two fictional damage claims. Amounts are USD, not cents.
+  fields: {}
+requires:
+- capability: http.post
+  filter: host == "yc-demo-sy15.onrender.com" and method == "POST"
+- capability: secrets.get
+  filter: name == "REFUND_DEMO_TOKEN"

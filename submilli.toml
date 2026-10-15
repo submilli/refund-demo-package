@@ -1,0 +1,6 @@
+[[package]]
+name = "@submilli/refund-demo"
+version = "0.1.0"
+description = "A retail refund sandbox: inspect requests, orders and deliveries, then issue and verify fictional refunds."
+keywords = ["refund", "retail", "orders", "demo"]
+path = "."
