@@ -50,7 +50,7 @@ export interface Receipt {
 
 function invoke(operation: string, args: string): string {
   const token = secrets.get("REFUND_DEMO_TOKEN");
-  if (token === null) throw new Error("The refund sandbox session is not connected.");
+  if (typeof token !== "string") throw new Error("The refund sandbox session is not connected.");
   const headers = new Map<string, string>();
   headers.set("Authorization", "Bearer " + token);
   headers.set("Content-Type", "application/json");
